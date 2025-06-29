@@ -80,10 +80,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: github-pages
-          path:
-            ./gh-pages-deploy/**
-            !./gh-pages-deploy/**.map
-            !./gh-pages-deploy/**/node_modules/**
+          path: ./gh-pages-deploy
           if-no-files-found: warn
           include-hidden-files: true
           compression-level: 9
