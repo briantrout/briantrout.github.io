@@ -66,11 +66,12 @@ jobs:
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
       - name: Build site
         run: ${{ steps.detect-package-manager.outputs.manager }} run build
-      - name: Upload artifact
+      - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
           name: dist
-          path: ./dist
+          path: ./.output
+          if-no-files-found: warn
 
   # Deployment job
   deploy:
