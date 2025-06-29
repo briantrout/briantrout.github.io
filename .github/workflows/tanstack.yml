@@ -69,16 +69,19 @@ jobs:
         env:
           NODE_ENV: production
           VITE_DISABLE_SOURCEMAPS: true
+      - name: Copy output files (avoiding symlinks)
+        run: |
+          mkdir -p ./gh-pages-deploy
+          cp -rL ./.output/* ./gh-pages-deploy/
+          echo "Directory structure of deployment files:"
+          find ./gh-pages-deploy -type f | sort
+          
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
           name: github-pages
-          path: |
-            ./.output/**
-            !./.output/**.map
-            !./.output/**/node_modules/**
+          path: ./gh-pages-deploy
           if-no-files-found: warn
-          include-hidden-files: true
           compression-level: 9
 
   # Deployment job
