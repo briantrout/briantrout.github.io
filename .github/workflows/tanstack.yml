@@ -66,6 +66,9 @@ jobs:
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
       - name: Build site
         run: ${{ steps.detect-package-manager.outputs.manager }} run build
+        env:
+          NODE_ENV: production
+          VITE_DISABLE_SOURCEMAPS: true
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
