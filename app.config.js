@@ -9,4 +9,7 @@ export default defineConfig({
       crawlLinks: true,
     },
   },
+  build: {
+    outDir: '.output' // Explicitly set output directory
+  }
 })
